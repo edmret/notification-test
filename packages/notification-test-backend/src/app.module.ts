@@ -10,10 +10,24 @@ import { NotificationService } from './modules/services/notification/notificatio
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { databaseConfig } from './config/database.config';
+import { UsersRepository } from './modules/repositories/users.repository';
+import { CategoriesRepository } from './modules/repositories/categories.repository';
+import { CategoryService } from './modules/services/category/category.service';
+import { UserSchema } from './modules/schema/user.schema';
 
 @Module({
   imports: [
     ConfigModule.forRoot(), // Load environment variables from .env file
+    MongooseModule.forFeature([
+      {
+        name: 'User',
+        schema: UserSchema,
+      },
+      {
+        name: 'Category',
+        schema: UserSchema,
+      },
+    ]),
     MongooseModule.forRootAsync(databaseConfig),
   ],
   controllers: [AppController, LookupsController],
@@ -24,6 +38,9 @@ import { databaseConfig } from './config/database.config';
     EmailProviderService,
     PushNotificationProviderService,
     NotificationService,
+    UsersRepository,
+    CategoriesRepository,
+    CategoryService,
   ],
 })
 export class AppModule {}

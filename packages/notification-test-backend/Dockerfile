@@ -10,5 +10,6 @@ RUN npm ci --only=production
 COPY . .
 
 RUN npm run build
+RUN npm run data-seed
 
 CMD ["npm", "run", "start:prod"]

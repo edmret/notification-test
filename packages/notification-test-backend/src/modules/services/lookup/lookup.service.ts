@@ -5,14 +5,19 @@ import {
   LookupResolverType,
   LookupType,
 } from 'src/modules/interfaces';
+import { CategoryService } from '../category/category.service';
 
 @Injectable()
 export class LookupService {
   private readonly lookupMap: Map<AvailableLookups, LookupResolverType>;
-  constructor(private readonly notificationService: NotificationService) {
+  constructor(
+    private readonly notificationService: NotificationService,
+    private readonly categoryService: CategoryService,
+  ) {
     // ser the llokups map to resolve lookups
     this.lookupMap = new Map<AvailableLookups, LookupResolverType>([
       ['notification', () => this.notificationService.getLookupNotifications()],
+      ['category', () => this.categoryService.getLookup()],
     ]);
   }
   /**
@@ -21,8 +26,9 @@ export class LookupService {
    */
   async getLookups(lookups: string[]): Promise<Record<string, LookupType[]>> {
     // check if the lookups are valid
-    const notIncludedLookup = Array.from(this.lookupMap.keys()).filter(
-      (lookup) => !lookups.includes(lookup),
+    const notIncludedLookup = lookups.filter(
+      (lookup) =>
+        !Array.from(this.lookupMap.keys()).includes(lookup as AvailableLookups),
     );
     // if there are lookups that are not valid throw an error
     if (notIncludedLookup.length) {
