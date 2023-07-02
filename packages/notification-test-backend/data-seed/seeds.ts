@@ -33,7 +33,10 @@ const userDatas = [
 const seedDatabase = async () => {
   try {
     const conn = createConnection(process.env.MONGODB_CONNECTION_STRING);
-    console.log('Database connected.');
+    console.log(
+      'Connecting to database...',
+      process.env.MONGODB_CONNECTION_STRING,
+    );
     const userModel = conn.model('User', UserSchema);
     const categoryModel = conn.model('Category', CategorySchema);
 

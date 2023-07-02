@@ -1,4 +1,32 @@
 # Notification Test
+
+### running the project
+
+### Disclaimer
+this project will run on development ports and for now are not configurables since is a test
+- Frontend: http://localhost:3000
+- Backend: http://localhost:3001
+
+#### Using Docker
+Using `Docker` is the easies way of running the application just by executing `docker-compose up --buid` in the root folder.
+
+### Using the local environment
+#### Requirements
+- NodeJS 16
+- MongoDB
+- Change the `packages/notification-test-backed/.env` file to match your local environment in the `mongodb`
+
+#### Running the backend
+- `cd packages/notification-test-backend`
+- `npm install`
+- `npm run start:dev`
+
+#### Running the frontend
+- `cd packages/notification-test-front`
+- `npm install`
+- `npm run start`
+
+
 We have to create a notification system that has the ability to receive a message and depending on the category and subscribers, notify these users in the channels they are registered.
 It will be 3 message categories:
 - Sports
