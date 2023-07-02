@@ -18,7 +18,7 @@ export class User {
   Subscribed: string[];
 
   @Prop()
-  Channel: string[];
+  Channels: string[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

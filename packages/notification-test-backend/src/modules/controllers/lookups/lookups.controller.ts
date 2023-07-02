@@ -1,5 +1,5 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { LookupType } from 'src/modules/interfaces';
+import { LookupType } from 'notification-core/src/types/lookup.types';
 import { LookupService } from 'src/modules/services/lookup/lookup.service';
 
 @Controller('lookups')

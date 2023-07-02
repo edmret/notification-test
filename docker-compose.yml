@@ -2,8 +2,7 @@ version: '3'
 services:
   backend:
     build:
-      # context: ./packages/notification-test-backend
-      # dockerfile: Dockerfile
+      context: .
       dockerfile: backend.dockerfile
     ports:
       - '3001:3001'
@@ -12,8 +11,7 @@ services:
       - mongo
   frontend:
     build:
-      # context: ./packages/notification-test-front
-      # dockerfile: Dockerfile
+      context: .
       dockerfile: frontend.dockerfile
     ports:
       - '3000:3000'

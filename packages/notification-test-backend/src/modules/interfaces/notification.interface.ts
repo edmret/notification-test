@@ -3,6 +3,7 @@
  */
 export interface INotification {
   mesasge: string;
+  data: any;
 }
 
 /**
@@ -11,12 +12,8 @@ export interface INotification {
 export interface INotificationProvider {
   /**
    * function that sends the notification
-   * @param notification the notification to be sent
+   * @param message the notification message to be sent
+   * @param category the category of the notification
    */
-  sendNotification(notification: INotification): Promise<void>;
+  sendNotification(message: string, category: string): Promise<void>;
 }
-
-/**
- * the notification tuple type
- */
-export type NotificationTuple = [string, INotificationProvider];

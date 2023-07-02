@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { LookupsController } from './modules/controllers/lookups/lookups.controller';
 import { LookupService } from './modules/services/lookup/lookup.service';
 import { SmsproviderService } from './modules/providers/smsprovider/smsprovider.service';
@@ -14,6 +12,11 @@ import { UsersRepository } from './modules/repositories/users.repository';
 import { CategoriesRepository } from './modules/repositories/categories.repository';
 import { CategoryService } from './modules/services/category/category.service';
 import { UserSchema } from './modules/schema/user.schema';
+import { MessageController } from './modules/controllers/message/message.controller';
+import { LogRepository } from './modules/repositories/log.repository';
+import { UserService } from './modules/services/user/user.service';
+import { LogSchema } from './modules/schema/log.schema';
+import { LogService } from './modules/services/log/log.service';
 
 @Module({
   imports: [
@@ -27,20 +30,26 @@ import { UserSchema } from './modules/schema/user.schema';
         name: 'Category',
         schema: UserSchema,
       },
+      {
+        name: 'Log',
+        schema: LogSchema,
+      },
     ]),
     MongooseModule.forRootAsync(databaseConfig),
   ],
-  controllers: [AppController, LookupsController],
+  controllers: [LookupsController, MessageController],
   providers: [
-    AppService,
     LookupService,
     SmsproviderService,
     EmailProviderService,
     PushNotificationProviderService,
     NotificationService,
     UsersRepository,
+    UserService,
     CategoriesRepository,
     CategoryService,
+    LogRepository,
+    LogService,
   ],
 })
 export class AppModule {}

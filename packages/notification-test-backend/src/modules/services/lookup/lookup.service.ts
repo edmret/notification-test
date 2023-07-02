@@ -2,22 +2,22 @@ import { Injectable } from '@nestjs/common';
 import { NotificationService } from '../notification/notification.service';
 import {
   AvailableLookups,
-  LookupResolverType,
-  LookupType,
+  LookupServiceInterface,
 } from 'src/modules/interfaces';
 import { CategoryService } from '../category/category.service';
+import { LookupType } from 'notification-core/src/types/lookup.types';
 
 @Injectable()
 export class LookupService {
-  private readonly lookupMap: Map<AvailableLookups, LookupResolverType>;
+  private readonly lookupMap: Map<AvailableLookups, LookupServiceInterface>;
   constructor(
     private readonly notificationService: NotificationService,
     private readonly categoryService: CategoryService,
   ) {
-    // ser the llokups map to resolve lookups
-    this.lookupMap = new Map<AvailableLookups, LookupResolverType>([
-      ['notification', () => this.notificationService.getLookupNotifications()],
-      ['category', () => this.categoryService.getLookup()],
+    // set the lookups map to resolve lookups
+    this.lookupMap = new Map<AvailableLookups, LookupServiceInterface>([
+      ['notification', this.notificationService],
+      ['category', this.categoryService],
     ]);
   }
   /**
@@ -39,7 +39,7 @@ export class LookupService {
 
     for (const lookupId of lookups) {
       const lookupResolver = this.lookupMap.get(lookupId as AvailableLookups);
-      finalRecord[lookupId] = await lookupResolver();
+      finalRecord[lookupId] = await lookupResolver.getLookup();
     }
 
     return finalRecord;

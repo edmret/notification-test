@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { LookupType } from 'src/modules/interfaces';
+import { LookupType } from 'notification-core/src/types/lookup.types';
+import { LookupServiceInterface } from 'src/modules/interfaces';
 import { CategoriesRepository } from 'src/modules/repositories/categories.repository';
 
 @Injectable()
-export class CategoryService {
+export class CategoryService implements LookupServiceInterface {
   constructor(private readonly categoriesRepository: CategoriesRepository) {}
 
   async getLookup(): Promise<LookupType[]> {

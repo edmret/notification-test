@@ -6,16 +6,13 @@ COPY package.json .
 COPY package-lock.json .
 
 RUN npm ci
-WORKDIR /app/packages/notification-test-front
-COPY package.json .
-RUN npm i
-
 WORKDIR /app
 
 COPY . .
 
 WORKDIR /app/packages/notification-test-front
 
+RUN npm i
 RUN npm run build
 
 CMD ["npm", "start"]

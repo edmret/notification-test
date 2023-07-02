@@ -1,16 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { LookupType } from 'src/modules/interfaces';
-import {
-  INotificationProvider,
-  NotificationTuple,
-} from 'src/modules/interfaces/notification.interface';
+import { LookupType, MessageDto } from 'notification-core/src/types';
+import { LookupServiceInterface } from 'src/modules/interfaces';
+import { INotificationProvider } from 'src/modules/interfaces/notification.interface';
 import { EmailProviderService } from 'src/modules/providers/email-provider/email-provider.service';
 import { PushNotificationProviderService } from 'src/modules/providers/push-notification-provider/push-notification-provider.service';
 import { SmsproviderService } from 'src/modules/providers/smsprovider/smsprovider.service';
 
 @Injectable()
-export class NotificationService {
-  private readonly providersMap: Map<string, NotificationTuple>;
+export class NotificationService implements LookupServiceInterface {
+  private readonly providersMap: Map<string, INotificationProvider>;
   private readonly lookup: LookupType[];
 
   constructor(
@@ -18,36 +16,30 @@ export class NotificationService {
     private readonly emailProvider: EmailProviderService,
     private readonly pushNotivicationProvider: PushNotificationProviderService,
   ) {
-    this.providersMap = new Map<string, NotificationTuple>([
-      ['sms', ['SMS', smsProvider]],
-      ['email', ['E-Mail', emailProvider]],
-      ['pushNotification', ['Push Notification', pushNotivicationProvider]],
+    this.providersMap = new Map<string, INotificationProvider>([
+      ['SMS', smsProvider],
+      ['E-Mail', emailProvider],
+      ['Push Notification', pushNotivicationProvider],
     ]);
 
-    this.lookup = Array.from(this.providersMap.entries()).map(
-      ([value, [label]]) => ({
-        value,
-        label,
-      }),
-    );
+    this.lookup = Array.from(this.providersMap.entries()).map(([value]) => ({
+      value,
+      label: value,
+    }));
   }
 
   /**
    * returns the notificationllokup
    */
-  async getLookupNotifications(): Promise<LookupType[]> {
+  async getLookup(): Promise<LookupType[]> {
     return this.lookup;
   }
 
-  /**
-   * get the provider by the key
-   * @param providerKey the key of the provider that we want to get
-   */
-  getProvicer(providerKey: string): INotificationProvider {
-    const tuple = this.providersMap.get(providerKey);
-    if (!tuple) {
-      throw new Error(`Provider ${providerKey} not found`);
-    }
-    return tuple[1];
+  sendNotifications(message: MessageDto): void {
+    // just do async delivery
+    const provides = Array.from(this.providersMap.values());
+    provides.forEach((provider) =>
+      provider.sendNotification(message.content, message.category),
+    );
   }
 }

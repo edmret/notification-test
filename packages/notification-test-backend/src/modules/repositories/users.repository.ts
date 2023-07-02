@@ -6,9 +6,15 @@ import { User, UserDocument } from '../schema/user.schema';
 @Injectable()
 export class UsersRepository {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
-
-  async create(user: User): Promise<User> {
-    const newCat = new this.userModel(user);
-    return newCat.save();
+  async FindUsersByChannelAndSubscription(
+    channelId: string,
+    subscriptionId: string,
+  ): Promise<User[]> {
+    return this.userModel
+      .find({
+        Channels: channelId,
+        Subscribed: subscriptionId,
+      })
+      .exec();
   }
 }

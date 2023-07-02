@@ -6,7 +6,7 @@ import {
 
 @Injectable()
 export class SmsproviderService implements INotificationProvider {
-  sendNotification(notification: INotification): Promise<void> {
-    throw new Error('Method not implemented.');
+  async sendNotification(message: string, category: string): Promise<void> {
+    console.log(message, '-------------------sms');
   }
 }

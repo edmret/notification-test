@@ -12,21 +12,21 @@ const userDatas = [
     email: 'John@test.com',
     phoneNumber: '1234567890',
     Subscribed: ['Sports'],
-    Channel: ['SMS'],
+    Channels: ['SMS', 'Push Notification'],
   },
   {
     name: 'Vianna Collar',
     email: 'vian@test.com',
     phoneNumber: '1234567891',
     Subscribed: ['Finance'],
-    Channel: ['E-Mail'],
+    Channels: ['E-Mail'],
   },
   {
     name: 'Peter parker',
     email: 'peter@test.com',
     phoneNumber: '1234567894',
     Subscribed: ['Sports', 'Finance', 'Movies'],
-    Channel: ['E-Mail', 'SMS', 'Push Notification'],
+    Channels: ['E-Mail', 'SMS', 'Push Notification'],
   },
 ];
 
