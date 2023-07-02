@@ -1,6 +1,6 @@
 # Notification Test
 
-### running the project
+### Running the project
 
 ### Disclaimer
 this project will run on development ports and for now are not configurables since is a test
@@ -8,7 +8,7 @@ this project will run on development ports and for now are not configurables sin
 - Backend: http://localhost:3001
 
 #### Using Docker
-Using `Docker` is the easies way of running the application just by executing `docker-compose up --buid` in the root folder.
+Using `Docker` is the easiest way of running the application just by executing `docker-compose up --build` in the root folder.
 
 ### Using the local environment
 #### Requirements
@@ -26,6 +26,10 @@ Using `Docker` is the easies way of running the application just by executing `d
 - `npm install`
 - `npm run start`
 
+#### Data Seed
+you may need to run the data-seed once
+- `cd packages/notification-test-backend`
+- `npm run data-seed`
 
 We have to create a notification system that has the ability to receive a message and depending on the category and subscribers, notify these users in the channels they are registered.
 It will be 3 message categories:
