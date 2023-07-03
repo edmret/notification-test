@@ -1,3 +1,5 @@
+import { MessageDto } from 'notification-core/src/types/Messages.type';
+
 /**
  * the notification model of the containiung information of a notification
  */
@@ -13,7 +15,6 @@ export interface INotificationProvider {
   /**
    * function that sends the notification
    * @param message the notification message to be sent
-   * @param category the category of the notification
    */
-  sendNotification(message: string, category: string): Promise<void>;
+  sendNotification(message: MessageDto): Promise<void>;
 }

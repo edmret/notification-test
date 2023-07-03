@@ -1,4 +1,4 @@
 export interface MessageDto {
-    content: string;
-    category: string;
+  content: string;
+  category: string;
 }

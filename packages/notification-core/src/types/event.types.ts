@@ -1,5 +1,5 @@
 import { strEnum } from "../utils";
 
-export const LogType = strEnum(["MessageSent", "MessageReceived"]);
+export const LogTypeEnum = strEnum(["MessageSent", "MessageEmailReceived", "MessageSmsReceived", "MessagePushReceived"]);
 
-export type LogType = keyof typeof LogType;
+export type LogType = keyof typeof LogTypeEnum;
