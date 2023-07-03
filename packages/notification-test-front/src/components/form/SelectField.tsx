@@ -1,5 +1,6 @@
 import {
   FormControl,
+  FormHelperText,
   InputLabel,
   MenuItem,
   Select,
@@ -15,16 +16,18 @@ interface SelectFieldProps extends SelectProps {
   isLoading?: boolean;
 }
 const SelectField = (props: SelectFieldProps) => {
-  const { setFieldValue } = useFormikContext();
-  const [{ value }] = useField({ name: props.name ?? '' });
+  const { setFieldValue, values } = useFormikContext();
+  const [{ value }, {error}] = useField({ name: props.name ?? '' });
 
   const handleChange = (event: SelectChangeEvent<any>, child: ReactNode) => {
     const { value } = event.target;
     setFieldValue(props.name ?? '', value);
   };
-
+  
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth sx={(theme) => ({'& .MuiOutlinedInput-notchedOutline': {
+        borderColor: !!error ? theme.palette.error.main: 'rgba(0, 0, 0, 0.23)'
+    }})}>
       <InputLabel id={`${props.id}-label`}>{props.label}</InputLabel>
       <Select
         labelId={`${props.id}-label`}
@@ -39,6 +42,7 @@ const SelectField = (props: SelectFieldProps) => {
           </MenuItem>
         ))}
       </Select>
+      {!!error && <FormHelperText sx={(theme) => ({ color: theme.palette.error.main })}>{error}</FormHelperText>}
     </FormControl>
   );
 };

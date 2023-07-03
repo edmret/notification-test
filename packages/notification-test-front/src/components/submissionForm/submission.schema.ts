@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 const submissionFormSchema = Yup.object().shape({
-    categiry: Yup.string().required('Required'),
+    category: Yup.string().required('Required'),
     content: Yup.string().required('Required'),
 });
 
