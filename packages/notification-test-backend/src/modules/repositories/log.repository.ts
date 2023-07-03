@@ -5,8 +5,13 @@ import { Log, LogDocument } from '../schema/log.schema';
 @Injectable()
 export class LogRepository {
   constructor(@InjectModel(Log.name) private LogModel: Model<LogDocument>) {}
+
   async create(log: Log): Promise<Log> {
     const newLog = new this.LogModel(log);
     return newLog.save();
+  }
+
+  async findAll(): Promise<Log[]> {
+    return this.LogModel.find().exec();
   }
 }

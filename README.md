@@ -7,7 +7,7 @@ this project will run on development ports and for now are not configurables sin
 - Frontend: http://localhost:3000
 - Backend: http://localhost:3001
 
-#### Using Docker
+### Using Docker
 Using `Docker` is the easiest way of running the application just by executing `docker compose up --build` in the root folder.
 
 ### Using the local environment
@@ -24,7 +24,7 @@ Using `Docker` is the easiest way of running the application just by executing `
 #### Running the frontend
 - `cd packages/notification-test-front`
 - `npm install`
-- `npm run start`
+- `npm run dev`
 
 #### Data Seed
 you may need to run the data-seed once
@@ -35,6 +35,9 @@ you may need to run the data-seed once
 - NestJS
 - NextJS
 - MongoDB
+
+### Image
+![Photo App](../images/image.png)
 
 ## Instructions
 We have to create a notification system that has the ability to receive a message and depending on the category and subscribers, notify these users in the channels they are registered.
