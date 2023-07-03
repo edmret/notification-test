@@ -18,6 +18,7 @@ import { UserService } from './modules/services/user/user.service';
 import { LogSchema } from './modules/schema/log.schema';
 import { LogService } from './modules/services/log/log.service';
 import { LogController } from './modules/controllers/log/log.controller';
+import { CategorySchema } from './modules/schema/category.schema';
 
 @Module({
   imports: [
@@ -29,7 +30,7 @@ import { LogController } from './modules/controllers/log/log.controller';
       },
       {
         name: 'Category',
-        schema: UserSchema,
+        schema: CategorySchema,
       },
       {
         name: 'Log',

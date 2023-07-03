@@ -1,5 +1,12 @@
 # Notification Test
 
+### Tech Stack
+- NestJS
+- NextJS
+- MongoDB
+
+### Image
+![Alt text](image.png)
 ### Running the project
 
 ### Disclaimer
@@ -31,13 +38,14 @@ you may need to run the data-seed once
 - `cd packages/notification-test-backend`
 - `npm run data-seed`
 
-### Tech Stack
-- NestJS
-- NextJS
-- MongoDB
+### Testing
+#### Backend
+- `cd packages/notification-test-backend`
+- `npm run test`
 
-### Image
-![Alt text](image.png)
+#### Frontend
+- `cd packages/notification-test-front`
+- `npm run test`
 
 ## Instructions
 We have to create a notification system that has the ability to receive a message and depending on the category and subscribers, notify these users in the channels they are registered.
