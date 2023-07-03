@@ -5,7 +5,9 @@ import { Category, CategoryDocument } from '../schema/category.schema';
 
 @Injectable()
 export class CategoriesRepository {
-  constructor(@InjectModel(Category.name) private categoryModel: Model<CategoryDocument>) {}
+  constructor(
+    @InjectModel(Category.name) private categoryModel: Model<CategoryDocument>,
+  ) {}
 
   async findAll(): Promise<Category[]> {
     return this.categoryModel.find().exec();

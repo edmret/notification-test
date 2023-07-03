@@ -9,7 +9,9 @@ describe('PushNotificationProviderService', () => {
       providers: [PushNotificationProviderService],
     }).compile();
 
-    service = module.get<PushNotificationProviderService>(PushNotificationProviderService);
+    service = module.get<PushNotificationProviderService>(
+      PushNotificationProviderService,
+    );
   });
 
   it('should be defined', () => {

@@ -1,10 +1,7 @@
-import Layout from '@/components/layout/Layout'
-import Image from 'next/image'
+import App from '@/components/App';
 
 export default function Home() {
   return (
-    <Layout>
-      content
-    </Layout>
+    <App />
   )
 }

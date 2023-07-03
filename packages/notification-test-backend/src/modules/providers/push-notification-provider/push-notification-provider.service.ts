@@ -1,9 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PushLogDto } from 'notification-core';
 import { MessageDto } from 'notification-core/src/types/Messages.type';
-import {
-  INotificationProvider,
-} from 'src/modules/interfaces/notification.interface';
+import { INotificationProvider } from 'src/modules/interfaces/notification.interface';
 import { UsersRepository } from 'src/modules/repositories/users.repository';
 import { LogService } from 'src/modules/services/log/log.service';
 
@@ -13,7 +11,7 @@ export class PushNotificationProviderService implements INotificationProvider {
     private readonly userRepository: UsersRepository,
     private readonly logService: LogService,
   ) {}
-  
+
   async sendNotification(message: MessageDto): Promise<void> {
     // This code is exactly the same as the other providers beacause is a mock, but We should have different implementations for each provider in the future
     // TODO: Implement the email provider specific connector
