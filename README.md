@@ -37,7 +37,7 @@ you may need to run the data-seed once
 - MongoDB
 
 ### Image
-![Photo App](../images/image.png)
+![Alt text](image.png)
 
 ## Instructions
 We have to create a notification system that has the ability to receive a message and depending on the category and subscribers, notify these users in the channels they are registered.
